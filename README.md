@@ -1,4 +1,9 @@
 # Headline Booster – AI Title Suggestions  
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![PHP Compatibility](https://img.shields.io/badge/PHP-%3E=7.4-brightgreen)
+![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
+![License](https://img.shields.io/badge/License-GPL--3.0--or--later-blue)
+
 Generate AI-powered headline variants with scoring directly inside the WordPress block editor.
 
 ![Banner](assets/banner-1544x500.png)
