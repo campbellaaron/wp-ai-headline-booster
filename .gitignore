@@ -1,0 +1,12 @@
+# OS stuff
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Node / build (if you ever add tooling)
+node_modules/
+dist/
