@@ -8,7 +8,7 @@
  * Author URI:        https://campbellaaron.github.io
  * Text Domain:       headline-booster
  * Requires at least: 6.0
- * Requires PHP:      8.2
+ * Requires PHP:      7.4
  * License:           GPL-3.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -27,18 +27,9 @@ require_once HB_PLUGIN_DIR . 'includes/class-hb-ai-client.php';
 class Headline_Booster {
 
     public function __construct() {
-        add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
         add_action( 'init', array( $this, 'init' ) );
         add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_assets' ) );
         add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'plugin_action_links' ) );
-    }
-
-    public function load_textdomain() {
-        load_plugin_textdomain(
-            'headline-booster',
-            false,
-            dirname( plugin_basename( __FILE__ ) ) . '/languages'
-        );
     }
 
     public function init() {

@@ -11,13 +11,12 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // List all options used by the plugin.
-$option_keys = array(
+$headline_booster_option_keys = array(
     'hb_api_key',
     'hb_default_tone',
 );
 
-// Delete each option.
-foreach ( $option_keys as $key ) {
-    delete_option( $key );
-    delete_site_option( $key ); // multisite support
+foreach ( $headline_booster_option_keys as $headline_booster_key ) {
+    delete_option( $headline_booster_key );
+    delete_site_option( $headline_booster_key ); // multisite support
 }

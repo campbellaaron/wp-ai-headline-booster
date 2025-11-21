@@ -32,7 +32,16 @@ class HB_Settings {
 
     public static function register_settings() {
         // Register options.
-        register_setting( self::OPTION_GROUP, self::OPTION_API_KEY );
+        register_setting(
+            self::OPTION_GROUP,
+            self::OPTION_API_KEY,
+            array(
+                'type'              => 'string',
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => '',
+            )
+        );
+        
         register_setting(
             self::OPTION_GROUP,
             self::OPTION_TONE,
@@ -71,8 +80,10 @@ class HB_Settings {
     }
 
     public static function render_api_key_field() {
-        $value = esc_attr( get_option( self::OPTION_API_KEY, '' ) );
-        echo '<input type="password" name="' . esc_attr( self::OPTION_API_KEY ) . '" value="' . $value . '" class="regular-text" />';
+        $value = get_option( self::OPTION_API_KEY, '' );
+        $value = is_string( $value ) ? $value : '';
+
+        echo '<input type="password" name="' . esc_attr( self::OPTION_API_KEY ) . '" value="' . esc_attr( $value ) . '" class="regular-text" />';
         echo '<p class="description">' . esc_html__( 'Create a secret key in your OpenAI dashboard and paste it here.', 'headline-booster' ) . '</p>';
     }
 

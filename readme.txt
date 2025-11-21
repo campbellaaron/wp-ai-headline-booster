@@ -1,13 +1,13 @@
 === Headline Booster – AI Title Suggestions ===
 Contributors: campbellaaron
 Donate link: https://campbellaaron.github.io
-Tags: ai, headlines, seo, titles, writing, editor, gutenberg, openai
+Tags: ai, headlines, seo, gutenberg, openai
 Requires at least: 6.0
-Tested up to: 6.6
+Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Generate AI-powered headline variants with built-in scoring to improve clarity, SEO, and click-through rate directly inside the WordPress editor.
 
