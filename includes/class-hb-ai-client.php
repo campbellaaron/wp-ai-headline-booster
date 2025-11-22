@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-class HB_AI_Client {
+class HEADLINE_BOOSTER_AITS_Client {
 
     const API_ENDPOINT  = 'https://api.openai.com/v1/chat/completions';
     const DEFAULT_MODEL = 'gpt-4o-mini';
@@ -18,17 +18,17 @@ class HB_AI_Client {
      * @return array|WP_Error
      */
     public static function generate_headlines( $title, $excerpt = '' ) {
-        $api_key = get_option( HB_Settings::OPTION_API_KEY );
+        $api_key = get_option( HEADLINE_BOOSTER_AITS_Settings::OPTION_API_KEY );
 
         if ( empty( $api_key ) ) {
             return new WP_Error(
                 'hb_no_api_key',
-                __( 'OpenAI API key is not set. Please add it in Settings → Headline Booster.', 'headline-booster' ),
+                __( 'OpenAI API key is not set. Please add it in Settings → Headline Booster.', 'headline-booster-ai-title-suggestions' ),
                 array( 'status' => 500 )
             );
         }
 
-        $tone = get_option( HB_Settings::OPTION_TONE, 'Neutral' );
+        $tone = get_option( HEADLINE_BOOSTER_AITS_Settings::OPTION_TONE, 'Neutral' );
 
         $prompt  = "You are a copywriting assistant that writes catchy, clear, SEO-friendly blog post titles.\n\n";
         $prompt .= 'Original title: "' . $title . "\"\n";
@@ -69,7 +69,7 @@ class HB_AI_Client {
         if ( is_wp_error( $response ) ) {
             return new WP_Error(
                 'hb_openai_http_error',
-                __( 'Error communicating with OpenAI API.', 'headline-booster' ),
+                __( 'Error communicating with OpenAI API.', 'headline-booster-ai-title-suggestions' ),
                 array(
                     'status' => 500,
                     'debug'  => $response->get_error_message(),
@@ -84,7 +84,7 @@ class HB_AI_Client {
         if ( 200 !== $status_code || empty( $data['choices'][0]['message']['content'] ) ) {
             return new WP_Error(
                 'hb_openai_bad_response',
-                __( 'Unexpected response from OpenAI API.', 'headline-booster' ),
+                __( 'Unexpected response from OpenAI API.', 'headline-booster-ai-title-suggestions' ),
                 array(
                     'status' => $status_code,
                     'debug'  => $raw_body,

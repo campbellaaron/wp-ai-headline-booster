@@ -1,5 +1,5 @@
 # Headline Booster – AI Title Suggestions  
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.0.4-blue)
 ![PHP Compatibility](https://img.shields.io/badge/PHP-%3E=7.4-brightgreen)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![License](https://img.shields.io/badge/License-GPL--3.0--or--later-blue)
@@ -68,6 +68,14 @@ The plugin uses:
 - `wp_remote_post` for secure server-side requests
 - No JSX build step — pure `createElement()` rendering
 
+## Changelog
+
+- 1.0.4
+Plugin check compliance and text domain alignment for wp.org slug
+
+- 1.0.0
+Initial release.
+
 ### Key Files
 
 - `headline-booster.php` — plugin bootstrap & asset loading  
@@ -87,7 +95,7 @@ The plugin stores **only** your API key in WordPress options.
 
 ## 📝 License
 
-GPLv2 or later.  
+GPLv3 or later.  
 Pull requests welcome!
 
 ---

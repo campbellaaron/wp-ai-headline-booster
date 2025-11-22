@@ -3,10 +3,11 @@
 /**
  * Plugin Name:       Headline Booster – AI Title Suggestions
  * Description:       Generate AI-powered headline variants with scoring to improve clarity, SEO, and click-through rate directly from the block editor.
- * Version:           1.0.0
+ * Version:           1.0.4
  * Author:            Aaron Campbell
  * Author URI:        https://campbellaaron.github.io
- * Text Domain:       headline-booster
+ * Text Domain:       headline-booster-ai-title-suggestions
+ * Domain Path:       /languages
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * License:           GPL-3.0-or-later
@@ -17,12 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-define( 'HB_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'HB_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'HEADLINE_BOOSTER_AITS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'HEADLINE_BOOSTER_AITS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-require_once HB_PLUGIN_DIR . 'includes/class-hb-settings.php';
-require_once HB_PLUGIN_DIR . 'includes/class-hb-rest.php';
-require_once HB_PLUGIN_DIR . 'includes/class-hb-ai-client.php';
+require_once HEADLINE_BOOSTER_AITS_PLUGIN_DIR . 'includes/class-hb-settings.php';
+require_once HEADLINE_BOOSTER_AITS_PLUGIN_DIR . 'includes/class-hb-rest.php';
+require_once HEADLINE_BOOSTER_AITS_PLUGIN_DIR . 'includes/class-hb-ai-client.php';
 
 class Headline_Booster {
 
@@ -33,24 +34,24 @@ class Headline_Booster {
     }
 
     public function init() {
-        HB_Settings::init();
-        HB_REST::init();
+        HEADLINE_BOOSTER_AITS_Settings::init();
+        HEADLINE_BOOSTER_AITS_REST::init();
     }
 
     public function enqueue_editor_assets() {
         wp_enqueue_script(
             'headline-booster-sidebar',
-            HB_PLUGIN_URL . 'assets/js/editor-sidebar.js',
+            HEADLINE_BOOSTER_AITS_PLUGIN_URL . 'assets/js/editor-sidebar.js',
             array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-api-fetch' ),
-            '1.0.0',
+            '1.0.4',
             true
         );
 
         wp_enqueue_style(
             'headline-booster-sidebar',
-            HB_PLUGIN_URL . 'assets/css/editor-sidebar.css',
+            HEADLINE_BOOSTER_AITS_PLUGIN_URL . 'assets/css/editor-sidebar.css',
             array(),
-            '1.0.0'
+            '1.0.4'
         );
 
         wp_localize_script(
@@ -65,8 +66,8 @@ class Headline_Booster {
     }
 
     public function plugin_action_links( $links ) {
-        $settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=' . HB_Settings::PAGE_SLUG ) ) . '">'
-            . esc_html__( 'Settings', 'headline-booster' ) . '</a>';
+        $settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=' . HEADLINE_BOOSTER_AITS_Settings::PAGE_SLUG ) ) . '">'
+            . esc_html__( 'Settings', 'headline-booster-ai-title-suggestions' ) . '</a>';
 
         array_unshift( $links, $settings_link );
 

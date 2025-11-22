@@ -5,7 +5,7 @@ Tags: ai, headlines, seo, gutenberg, openai
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,9 @@ Not currently. Headline Booster is built specifically for the block (Gutenberg) 
 2. Settings page for entering your OpenAI API key and selecting tone
 
 == Changelog ==
+
+= 1.0.4 =
+Plugin check compliance and text domain alignment for wp.org slug
 
 = 1.0.0 =
 Initial release.

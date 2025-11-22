@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-class HB_REST {
+class HEADLINE_BOOSTER_AITS_REST {
 
     public static function init() {
         add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
@@ -41,12 +41,12 @@ class HB_REST {
         if ( empty( $title ) ) {
             return new WP_Error(
                 'hb_no_title',
-                __( 'No title provided.', 'headline-booster' ),
+                __( 'No title provided.', 'headline-booster-ai-title-suggestions' ),
                 array( 'status' => 400 )
             );
         }
 
-        $variants = HB_AI_Client::generate_headlines( $title, $excerpt );
+        $variants = HEADLINE_BOOSTER_AITS_Client::generate_headlines( $title, $excerpt );
 
         if ( is_wp_error( $variants ) ) {
             return $variants;

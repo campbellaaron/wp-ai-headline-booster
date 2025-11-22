@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-class HB_Settings {
+class HEADLINE_BOOSTER_AITS_Settings {
 
     const OPTION_API_KEY = 'hb_api_key';
     const OPTION_TONE    = 'hb_default_tone';
@@ -22,8 +22,8 @@ class HB_Settings {
 
     public static function add_menu() {
         add_options_page(
-            __( 'Headline Booster Settings', 'headline-booster' ),
-            __( 'Headline Booster', 'headline-booster' ),
+            __( 'Headline Booster Settings', 'headline-booster-ai-title-suggestions' ),
+            __( 'Headline Booster', 'headline-booster-ai-title-suggestions' ),
             'manage_options',
             self::PAGE_SLUG,
             array( __CLASS__, 'render_settings_page' )
@@ -41,7 +41,7 @@ class HB_Settings {
                 'default'           => '',
             )
         );
-        
+
         register_setting(
             self::OPTION_GROUP,
             self::OPTION_TONE,
@@ -55,7 +55,7 @@ class HB_Settings {
         // Main section.
         add_settings_section(
             'hb_main_section',
-            __( 'API Settings', 'headline-booster' ),
+            __( 'API Settings', 'headline-booster-ai-title-suggestions' ),
             '__return_false',
             self::PAGE_SLUG
         );
@@ -63,7 +63,7 @@ class HB_Settings {
         // API key field.
         add_settings_field(
             self::OPTION_API_KEY,
-            __( 'OpenAI API Key', 'headline-booster' ),
+            __( 'OpenAI API Key', 'headline-booster-ai-title-suggestions' ),
             array( __CLASS__, 'render_api_key_field' ),
             self::PAGE_SLUG,
             'hb_main_section'
@@ -72,7 +72,7 @@ class HB_Settings {
         // Tone field.
         add_settings_field(
             self::OPTION_TONE,
-            __( 'Default Tone', 'headline-booster' ),
+            __( 'Default Tone', 'headline-booster-ai-title-suggestions' ),
             array( __CLASS__, 'render_tone_field' ),
             self::PAGE_SLUG,
             'hb_main_section'
@@ -84,7 +84,7 @@ class HB_Settings {
         $value = is_string( $value ) ? $value : '';
 
         echo '<input type="password" name="' . esc_attr( self::OPTION_API_KEY ) . '" value="' . esc_attr( $value ) . '" class="regular-text" />';
-        echo '<p class="description">' . esc_html__( 'Create a secret key in your OpenAI dashboard and paste it here.', 'headline-booster' ) . '</p>';
+        echo '<p class="description">' . esc_html__( 'Create a secret key in your OpenAI dashboard and paste it here.', 'headline-booster-ai-title-suggestions' ) . '</p>';
     }
 
     public static function render_tone_field() {
@@ -114,7 +114,7 @@ class HB_Settings {
     public static function render_settings_page() {
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e( 'Headline Booster Settings', 'headline-booster' ); ?></h1>
+            <h1><?php esc_html_e( 'Headline Booster Settings', 'headline-booster-ai-title-suggestions' ); ?></h1>
             <form method="post" action="options.php">
                 <?php
                 settings_fields( self::OPTION_GROUP );
