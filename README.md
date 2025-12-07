@@ -1,5 +1,5 @@
 # Headline Booster – AI Title Suggestions  
-![Version](https://img.shields.io/badge/version-1.0.4-blue)
+![Version](https://img.shields.io/badge/version-1.0.5-blue)
 ![PHP Compatibility](https://img.shields.io/badge/PHP-%3E=7.4-brightgreen)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![License](https://img.shields.io/badge/License-GPL--3.0--or--later-blue)
@@ -69,6 +69,14 @@ The plugin uses:
 - No JSX build step — pure `createElement()` rendering
 
 ## Changelog
+
+- 1.0.5 -
+- - Updated all plugin prefixes, class names, option keys, constants, and JavaScript globals to use a unique and fully namespaced `headline_booster_aits_` prefix as required by WordPress.org review guidelines.
+- - Replaced short `hb_*` identifiers with fully prefixed versions to prevent naming conflicts.
+- - Updated localized JavaScript global from `HeadlineBoosterSettings` to `HBAITSSettings`.
+- - Improved internal file structure and naming consistency for better long-term maintainability.
+- - Cleaned up assets and removed directory-only images from plugin zip as requested by reviewers.
+- - General code cleanup and preparation for WordPress.org approval.
 
 - 1.0.4
 Plugin check compliance and text domain alignment for wp.org slug

@@ -40,7 +40,7 @@ class HEADLINE_BOOSTER_AITS_REST {
 
         if ( empty( $title ) ) {
             return new WP_Error(
-                'hb_no_title',
+                'hbaits_no_title',
                 __( 'No title provided.', 'headline-booster-ai-title-suggestions' ),
                 array( 'status' => 400 )
             );

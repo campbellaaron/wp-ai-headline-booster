@@ -97,10 +97,10 @@
             setVariants([]);
 
             apiFetch({
-                url: HeadlineBoosterSettings.apiUrl,
+                url: HBAITSSettings.apiUrl,
                 method: 'POST',
                 headers: {
-                    'X-WP-Nonce': HeadlineBoosterSettings.nonce,
+                    'X-WP-Nonce': HBAITSSettings.nonce,
                 },
                 data: {
                     title,

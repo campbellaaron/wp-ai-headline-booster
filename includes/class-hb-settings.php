@@ -6,14 +6,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class HEADLINE_BOOSTER_AITS_Settings {
 
-    const OPTION_API_KEY = 'hb_api_key';
-    const OPTION_TONE    = 'hb_default_tone';
+    const OPTION_API_KEY = 'headline_booster_aits_api_key';
+    const OPTION_TONE    = 'headline_booster_aits_default_tone';
 
     // Slug used in the URL (?page=...).
     const PAGE_SLUG    = 'headline-booster-settings';
 
     // Option group for register_setting() / settings_fields().
-    const OPTION_GROUP = 'headline_booster_settings';
+    const OPTION_GROUP = 'headline_booster_aits_settings';
 
     public static function init() {
         add_action( 'admin_menu', array( __CLASS__, 'add_menu' ) );
@@ -54,7 +54,7 @@ class HEADLINE_BOOSTER_AITS_Settings {
 
         // Main section.
         add_settings_section(
-            'hb_main_section',
+            'headline_booster_aits_main_section',
             __( 'API Settings', 'headline-booster-ai-title-suggestions' ),
             '__return_false',
             self::PAGE_SLUG
@@ -66,7 +66,7 @@ class HEADLINE_BOOSTER_AITS_Settings {
             __( 'OpenAI API Key', 'headline-booster-ai-title-suggestions' ),
             array( __CLASS__, 'render_api_key_field' ),
             self::PAGE_SLUG,
-            'hb_main_section'
+            'headline_booster_aits_main_section'
         );
 
         // Tone field.
@@ -75,7 +75,7 @@ class HEADLINE_BOOSTER_AITS_Settings {
             __( 'Default Tone', 'headline-booster-ai-title-suggestions' ),
             array( __CLASS__, 'render_tone_field' ),
             self::PAGE_SLUG,
-            'hb_main_section'
+            'headline_booster_aits_main_section'
         );
     }
 

@@ -22,7 +22,7 @@ class HEADLINE_BOOSTER_AITS_Client {
 
         if ( empty( $api_key ) ) {
             return new WP_Error(
-                'hb_no_api_key',
+                'hbaits_no_api_key',
                 __( 'OpenAI API key is not set. Please add it in Settings → Headline Booster.', 'headline-booster-ai-title-suggestions' ),
                 array( 'status' => 500 )
             );
@@ -68,7 +68,7 @@ class HEADLINE_BOOSTER_AITS_Client {
 
         if ( is_wp_error( $response ) ) {
             return new WP_Error(
-                'hb_openai_http_error',
+                'hbaits_openai_http_error',
                 __( 'Error communicating with OpenAI API.', 'headline-booster-ai-title-suggestions' ),
                 array(
                     'status' => 500,
@@ -83,7 +83,7 @@ class HEADLINE_BOOSTER_AITS_Client {
 
         if ( 200 !== $status_code || empty( $data['choices'][0]['message']['content'] ) ) {
             return new WP_Error(
-                'hb_openai_bad_response',
+                'hbaits_openai_bad_response',
                 __( 'Unexpected response from OpenAI API.', 'headline-booster-ai-title-suggestions' ),
                 array(
                     'status' => $status_code,

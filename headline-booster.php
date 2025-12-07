@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       Headline Booster – AI Title Suggestions
  * Description:       Generate AI-powered headline variants with scoring to improve clarity, SEO, and click-through rate directly from the block editor.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            Aaron Campbell
  * Author URI:        https://campbellaaron.github.io
  * Text Domain:       headline-booster-ai-title-suggestions
@@ -25,7 +25,7 @@ require_once HEADLINE_BOOSTER_AITS_PLUGIN_DIR . 'includes/class-hb-settings.php'
 require_once HEADLINE_BOOSTER_AITS_PLUGIN_DIR . 'includes/class-hb-rest.php';
 require_once HEADLINE_BOOSTER_AITS_PLUGIN_DIR . 'includes/class-hb-ai-client.php';
 
-class Headline_Booster {
+class HEADLINE_BOOSTER_AITS_Plugin {
 
     public function __construct() {
         add_action( 'init', array( $this, 'init' ) );
@@ -43,7 +43,7 @@ class Headline_Booster {
             'headline-booster-sidebar',
             HEADLINE_BOOSTER_AITS_PLUGIN_URL . 'assets/js/editor-sidebar.js',
             array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-api-fetch' ),
-            '1.0.4',
+            '1.0.5',
             true
         );
 
@@ -51,12 +51,12 @@ class Headline_Booster {
             'headline-booster-sidebar',
             HEADLINE_BOOSTER_AITS_PLUGIN_URL . 'assets/css/editor-sidebar.css',
             array(),
-            '1.0.4'
+            '1.0.5'
         );
 
         wp_localize_script(
             'headline-booster-sidebar',
-            'HeadlineBoosterSettings',
+            'HBAITSSettings',
             array(
                 // Full REST URL for apiFetch({ url: ... }).
                 'apiUrl' => esc_url_raw( rest_url( 'headline-booster/v1/generate' ) ),
@@ -75,4 +75,4 @@ class Headline_Booster {
     }
 }
 
-new Headline_Booster();
+new HEADLINE_BOOSTER_AITS_Plugin();
