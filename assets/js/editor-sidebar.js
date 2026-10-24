@@ -1,6 +1,6 @@
 (function (wp) {
     const { registerPlugin } = wp.plugins;
-    const { PluginDocumentSettingPanel } = wp.editPost;
+    const PluginDocumentSettingPanel = wp.editor?.PluginDocumentSettingPanel ?? wp.editPost?.PluginDocumentSettingPanel;
     const { PanelBody, Button, Spinner, Notice } = wp.components;
     const { useSelect, useDispatch } = wp.data;
     const { useState, createElement, Fragment } = wp.element;

@@ -3,9 +3,9 @@ Contributors: aarcampb
 Donate link: https://campbellaaron.github.io
 Tags: ai, headlines, seo, gutenberg, openai
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -45,6 +45,9 @@ You must provide your own OpenAI API key in **Settings → Headline Booster**.
 
 == Frequently Asked Questions ==
 
+= Which OpenAI model does it use? =
+Headline Booster uses gpt-6-luna with reasoning disabled for short headline requests. Your OpenAI API project must have access to this model and available billing quota.
+
 = Do I need an OpenAI account? =
 Yes. You must obtain an API key from <https://platform.openai.com/>.  
 The plugin does not include or proxy API keys.
@@ -82,6 +85,16 @@ For more information about OpenAI's policies, please see:
 - Privacy Policy: https://openai.com/policies/privacy-policy
 
 == Changelog ==
+
+= 1.0.7 =
+* Automatically retry an SSL connection reset once after a short delay. Certificate validation remains enabled; timeouts and API errors are not retried.
+* Updated WordPress compatibility metadata following user testing on WordPress 7.1.3.
+
+= 1.0.6 =
+* Replaced gpt-4o-mini with gpt-6-luna and bounded completion tokens.
+* Updated the editor panel to use wp.editor on WordPress 6.6 and later, retaining the older API on WordPress 6.0–6.5.
+* Fixed optional excerpt handling and preserved numbers at the start of headlines.
+* Rejected incomplete model output and returned an error status for malformed successful responses.
 
 = 1.0.5 =
 * Updated all plugin prefixes, class names, option keys, constants, and JavaScript globals to use a unique and fully namespaced `headline_booster_aits_` prefix as required by WordPress.org review guidelines.

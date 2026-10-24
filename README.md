@@ -1,5 +1,5 @@
 # Headline Booster – AI Title Suggestions  
-![Version](https://img.shields.io/badge/version-1.0.5-blue)
+![Version](https://img.shields.io/badge/version-1.0.7-blue)
 ![PHP Compatibility](https://img.shields.io/badge/PHP-%3E=7.4-brightgreen)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-blue)
 ![License](https://img.shields.io/badge/License-GPL--3.0--or--later-blue)
@@ -69,6 +69,10 @@ The plugin uses:
 - No JSX build step — pure `createElement()` rendering
 
 ## Changelog
+
+- 1.0.7 — Retry an SSL connection reset once after a short delay.
+
+- 1.0.6 — Use `gpt-6-luna` with reasoning disabled and bounded output. Update editor panel integration for WordPress 7.1 while preserving WordPress 6.0–6.5 support. Fix optional excerpts, leading headline numbers, and incomplete API responses.
 
 - 1.0.5 -
 - - Updated all plugin prefixes, class names, option keys, constants, and JavaScript globals to use a unique and fully namespaced `headline_booster_aits_` prefix as required by WordPress.org review guidelines.

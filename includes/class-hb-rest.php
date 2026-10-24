@@ -36,7 +36,7 @@ class HEADLINE_BOOSTER_AITS_REST {
 
     public static function handle_generate( WP_REST_Request $request ) {
         $title   = sanitize_text_field( $request->get_param( 'title' ) );
-        $excerpt = sanitize_textarea_field( $request->get_param( 'excerpt' ) );
+        $excerpt = sanitize_textarea_field( $request->get_param( 'excerpt' ) ?? '' );
 
         if ( empty( $title ) ) {
             return new WP_Error(

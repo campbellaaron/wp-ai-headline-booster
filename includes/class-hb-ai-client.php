@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class HEADLINE_BOOSTER_AITS_Client {
 
     const API_ENDPOINT  = 'https://api.openai.com/v1/chat/completions';
-    const DEFAULT_MODEL = 'gpt-4o-mini';
+    const DEFAULT_MODEL = 'gpt-6-luna';
 
     /**
      * Generate alternative headlines using OpenAI.
@@ -51,7 +51,9 @@ class HEADLINE_BOOSTER_AITS_Client {
                     'content' => $prompt,
                 ),
             ),
-            'temperature' => 0.8,
+            // Keep short headline requests fast and bound completion costs.
+            'reasoning_effort'      => 'none',
+            'max_completion_tokens' => 512,
         );
 
         $response = wp_remote_post(
@@ -65,6 +67,23 @@ class HEADLINE_BOOSTER_AITS_Client {
                 'timeout' => 20,
             )
         );
+
+        // Retry a transient connection reset once. Do not retry timeouts,
+        // certificate failures, or API responses (including billing errors).
+        if ( is_wp_error( $response ) && preg_match( '/cURL error 35:.*(?:connection.*reset|reset.*connection)/i', $response->get_error_message() ) ) {
+            usleep( 250000 );
+            $response = wp_remote_post(
+                self::API_ENDPOINT,
+                array(
+                    'headers' => array(
+                        'Authorization' => 'Bearer ' . $api_key,
+                        'Content-Type'  => 'application/json',
+                    ),
+                    'body'    => wp_json_encode( $body ),
+                    'timeout' => 20,
+                )
+            );
+        }
 
         if ( is_wp_error( $response ) ) {
             return new WP_Error(
@@ -81,12 +100,12 @@ class HEADLINE_BOOSTER_AITS_Client {
         $raw_body    = wp_remote_retrieve_body( $response );
         $data        = json_decode( $raw_body, true );
 
-        if ( 200 !== $status_code || empty( $data['choices'][0]['message']['content'] ) ) {
+        if ( 200 !== $status_code || empty( $data['choices'][0]['message']['content'] ) || ! is_string( $data['choices'][0]['message']['content'] ) || 'stop' !== ( $data['choices'][0]['finish_reason'] ?? '' ) ) {
             return new WP_Error(
                 'hbaits_openai_bad_response',
                 __( 'Unexpected response from OpenAI API.', 'headline-booster-ai-title-suggestions' ),
                 array(
-                    'status' => $status_code,
+                    'status' => 200 === $status_code ? 502 : $status_code,
                     'debug'  => $raw_body,
                 )
             );
@@ -105,7 +124,7 @@ class HEADLINE_BOOSTER_AITS_Client {
             }
 
             // Remove leading bullets/numbers
-            $line = preg_replace( '/^[\-\*\d\.\)\s]+/', '', $line );
+            $line = preg_replace( '/^(?:[-*]\s+|\d+[.)]\s+)/', '', $line );
 
             // Remove surrounding quotes (single, double, curly)
             $line = trim( $line, "\"'“”‟„”" );

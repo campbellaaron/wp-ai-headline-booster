@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       Headline Booster – AI Title Suggestions
  * Description:       Generate AI-powered headline variants with scoring to improve clarity, SEO, and click-through rate directly from the block editor.
- * Version:           1.0.5
+ * Version:           1.0.7
  * Author:            Aaron Campbell
  * Author URI:        https://campbellaaron.github.io
  * Text Domain:       headline-booster-ai-title-suggestions
@@ -39,11 +39,15 @@ class HEADLINE_BOOSTER_AITS_Plugin {
     }
 
     public function enqueue_editor_assets() {
+        global $wp_version;
+
+        $editor_dependency = version_compare( $wp_version, '6.6', '>=' ) ? 'wp-editor' : 'wp-edit-post';
+
         wp_enqueue_script(
             'headline-booster-sidebar',
             HEADLINE_BOOSTER_AITS_PLUGIN_URL . 'assets/js/editor-sidebar.js',
-            array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data', 'wp-api-fetch' ),
-            '1.0.5',
+            array( 'wp-plugins', $editor_dependency, 'wp-element', 'wp-components', 'wp-data', 'wp-api-fetch' ),
+            '1.0.7',
             true
         );
 
@@ -51,7 +55,7 @@ class HEADLINE_BOOSTER_AITS_Plugin {
             'headline-booster-sidebar',
             HEADLINE_BOOSTER_AITS_PLUGIN_URL . 'assets/css/editor-sidebar.css',
             array(),
-            '1.0.5'
+            '1.0.7'
         );
 
         wp_localize_script(
